@@ -13,16 +13,13 @@ import vazkii.psi.api.spell.SpellPiece;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RegisterPieces {
 
-    public enum PType {
-        test,
-    }
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Item> event) {
-        register("trick_test", TestTrick.class, PType.test.toString(), false);
+        register("trick_test", TestTrick.class, false);
     }
-    public static void register(String id, Class<? extends SpellPiece> piece, String group, boolean main) {
+    public static void register(String id, Class<? extends SpellPiece> piece, boolean main) {
         PsiAPI.registerSpellPieceAndTexture(new ResourceLocation(MissingMagic.modId, id), piece);
-        PsiAPI.addPieceToGroup(piece, new ResourceLocation(MissingMagic.modId, group), main);
+        PsiAPI.addPieceToGroup(piece, new ResourceLocation(MissingMagic.modId, id), main);
     }
 }
