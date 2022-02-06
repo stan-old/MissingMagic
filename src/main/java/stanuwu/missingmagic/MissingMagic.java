@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Mod("missingmagic")
 public class MissingMagic {
     public static final String modId = "missingmagic";
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public MissingMagic() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);

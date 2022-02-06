@@ -2,7 +2,7 @@ modLoader="javafml"
 loaderVersion="[36,)"
 license="GNU LGPL 3.0"
 logoFile="logo.png"
-displayURL="https://github.com/stanvonderhtlwienwestlol/MissingMagic"
+displayURL="https://github.com/stanuwu/MissingMagic"
 [[mods]]
 modId="missingmagic"
 version="${file.jarVersion}"

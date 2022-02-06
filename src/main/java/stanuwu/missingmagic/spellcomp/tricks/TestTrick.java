@@ -1,6 +1,7 @@
 package stanuwu.missingmagic.spellcomp.tricks;
 
 import stanuwu.missingmagic.Utils;
+import stanuwu.missingmagic.spellcomp.Errors;
 import vazkii.psi.api.spell.*;
 import vazkii.psi.api.spell.param.ParamNumber;
 import vazkii.psi.api.spell.piece.PieceTrick;
@@ -14,14 +15,18 @@ public class TestTrick extends PieceTrick {
 
     @Override
     public void initParams() {
-        addParam(input1 = new ParamNumber(SpellParam.GENERIC_NAME_NUMBER, SpellParam.GREEN, false, false));
+        addParam(input1 = new ParamNumber(SpellParam.GENERIC_NAME_NUMBER, SpellParam.RED, false, false));
     }
 
     @Override
     public void addToMetadata(SpellMetadata meta) throws SpellCompilationException {
         super.addToMetadata(meta);
-        meta.addStat(EnumSpellStat.POTENCY, 10);
-        meta.addStat(EnumSpellStat.COST, (int) 100);
+        double inputV = getParamEvaluationeOrDefault(input1, 1).doubleValue();
+        if (inputV < 0) {
+            Errors.test.compile(this.x, this.y);
+        }
+        meta.addStat(EnumSpellStat.POTENCY, (int) ((int)10*(inputV/100)));
+        meta.addStat(EnumSpellStat.COST, (int) ((int) 100*(inputV/100)));
     }
 
     @Override
