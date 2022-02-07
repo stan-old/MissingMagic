@@ -3,7 +3,8 @@
   "missingmagic.spellpiece.trick_test.desc": "Test Spell Piece",
   "missingmagic.spellpiece.trick_freeze": "Trick: Freeze Block",
   "missingmagic.spellpiece.trick_freeze.desc": "Freezes the Block at the given Position",
-
+  "missingmagic.spellpiece.trick_freeze_sequence": "Trick: Freeze Block Sequence",
+  "missingmagic.spellpiece.trick_freeze_sequence.desc": "Freezes a sequence of blocks along the direction of the given Vector",
   "missingmagic.spellpiece.trick_torrent_sequence": "Trick: Torrent Sequence",
   "missingmagic.spellpiece.trick_torrent_sequence.desc": "Creates a sequence of water along the direction of the given Vector",
 

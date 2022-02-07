@@ -15,12 +15,12 @@ import vazkii.psi.api.spell.param.ParamNumber;
 import vazkii.psi.api.spell.param.ParamVector;
 import vazkii.psi.api.spell.piece.PieceTrick;
 
-public class TrickTorrentSequence extends PieceTrick {
+public class TrickFreezeSequence extends PieceTrick {
     SpellParam<Vector3> position;
     SpellParam<Vector3> target;
     SpellParam<Number> maxBlocks;
 
-    public TrickTorrentSequence(Spell spell) {
+    public TrickFreezeSequence(Spell spell) {
         super(spell);
     }
 
@@ -64,12 +64,7 @@ public class TrickTorrentSequence extends PieceTrick {
             if (!ctx.isInRadius(Vector3.fromBlockPos(blockPos))) {
                 throw new SpellRuntimeException(SpellRuntimeException.OUTSIDE_RADIUS);
             }
-            BlockEvent.EntityPlaceEvent placeEvent = new BlockEvent.EntityPlaceEvent(BlockSnapshot.create(world.getDimensionKey(), world, blockPos), world.getBlockState(blockPos.offset(Direction.UP)), ctx.caster);
-            MinecraftForge.EVENT_BUS.post(placeEvent);
-            if (placeEvent.isCanceled()) {
-                return null;
-            }
-            ((BucketItem)Items.WATER_BUCKET).tryPlaceContainedLiquid(ctx.caster, world, blockPos, null);
+            TrickFreeze.doFreeze(blockPos, world);
         }
 
         return null;

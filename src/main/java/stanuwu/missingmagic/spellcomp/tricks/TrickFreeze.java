@@ -41,7 +41,7 @@ public class TrickFreeze extends PieceTrick {
         return null;
     }
 
-    void doFreeze(BlockPos pos, World world) {
+    public static void doFreeze(BlockPos pos, World world) {
         BlockState state= world.getBlockState(pos);
         if((state.getMaterial() == Material.AIR || state.getMaterial() == Material.SNOW) && world.getBiome(pos).getTemperature() < 2) {
             BlockState below = world.getBlockState(pos.add(0, -1, 0));

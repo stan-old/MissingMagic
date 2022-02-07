@@ -7,6 +7,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import stanuwu.missingmagic.MissingMagic;
 import stanuwu.missingmagic.spellcomp.tricks.TrickFreeze;
+import stanuwu.missingmagic.spellcomp.tricks.TrickFreezeSequence;
 import stanuwu.missingmagic.spellcomp.tricks.TrickTest;
 import stanuwu.missingmagic.spellcomp.tricks.TrickTorrentSequence;
 import vazkii.psi.api.PsiAPI;
@@ -21,7 +22,7 @@ public class RegisterPieces {
         //register("trick_test", TrickTest.class, false);
 
         register("trick_freeze", TrickFreeze.class, false);
-
+        register("trick_freeze_sequence", TrickFreezeSequence.class, false);
         register("trick_torrent_sequence", TrickTorrentSequence.class, false);
     }
     public static void register(String id, Class<? extends SpellPiece> piece, boolean main) {
