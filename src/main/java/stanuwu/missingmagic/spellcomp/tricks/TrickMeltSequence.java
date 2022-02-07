@@ -1,7 +1,6 @@
 package stanuwu.missingmagic.spellcomp.tricks;
 
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import vazkii.psi.api.internal.MathHelper;
 import vazkii.psi.api.internal.Vector3;
 import vazkii.psi.api.spell.*;
@@ -9,12 +8,12 @@ import vazkii.psi.api.spell.param.ParamNumber;
 import vazkii.psi.api.spell.param.ParamVector;
 import vazkii.psi.api.spell.piece.PieceTrick;
 
-public class TrickFreezeSequence extends PieceTrick {
+public class TrickMeltSequence extends PieceTrick {
     SpellParam<Vector3> position;
     SpellParam<Vector3> target;
     SpellParam<Number> maxBlocks;
 
-    public TrickFreezeSequence(Spell spell) {
+    public TrickMeltSequence(Spell spell) {
         super(spell);
     }
 
@@ -40,11 +39,6 @@ public class TrickFreezeSequence extends PieceTrick {
 
     @Override
     public Object execute(SpellContext ctx) throws SpellRuntimeException {
-        World world = ctx.focalPoint.getEntityWorld();
-        if (world.getDimensionType().isUltrawarm()) {
-            return null;
-        }
-
         Vector3 positionV = this.getParamValue(ctx, position);
         Vector3 targetV = this.getParamValue(ctx, target);
         int maxBlocksV = this.getParamValue(ctx, maxBlocks).intValue();
@@ -58,7 +52,7 @@ public class TrickFreezeSequence extends PieceTrick {
             if (!ctx.isInRadius(Vector3.fromBlockPos(blockPos))) {
                 throw new SpellRuntimeException(SpellRuntimeException.OUTSIDE_RADIUS);
             }
-            TrickFreeze.doFreeze(blockPos, ctx);
+            TrickMelt.doMelt(blockPos, ctx);
         }
 
         return null;
