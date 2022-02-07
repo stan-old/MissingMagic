@@ -1,7 +1,7 @@
 {
-  "missingmagic.spellpiece.trick_test": "Test",
+  "missingmagic.spellpiece.trick_test": "Trick: Test",
   "missingmagic.spellpiece.trick_test.desc": "Test Spell Piece",
-  "missingmagic.spellpiece.trick_freeze": "Freeze",
+  "missingmagic.spellpiece.trick_freeze": "Trick: Freeze Block",
   "missingmagic.spellpiece.trick_freeze.desc": "Extremely Cold",
 
   "missingmagic.error.range": "ERROR: The range of this trick is 32 blocks",

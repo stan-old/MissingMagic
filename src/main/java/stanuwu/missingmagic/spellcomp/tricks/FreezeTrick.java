@@ -52,16 +52,13 @@ public class FreezeTrick extends PieceTrick {
 
     void doFreeze(BlockPos pos, World world) {
         BlockState state= world.getBlockState(pos);
-        if(state.getMaterial() == Material.AIR && world.getBiome(pos).getTemperature() < 2) {
-            BlockPos belowpos = pos.add(0, -1, 0);
-            BlockState below = world.getBlockState(belowpos);
+        if((state.getMaterial() == Material.AIR || state.getMaterial() == Material.SNOW) && world.getBiome(pos).getTemperature() < 2) {
+            BlockState below = world.getBlockState(pos.add(0, -1, 0));
             if(world.isRaining()) {
                 world.setBlockState(pos, Blocks.ICE.getDefaultState());
             } else if(below.isSolid()) {
-                if (state.getBlock() instanceof SnowBlock && state.get(SnowBlock.LAYERS) < 8) {
-                    world.setBlockState(pos, Blocks.SNOW.getDefaultState().with(SnowBlock.LAYERS, state.get(SnowBlock.LAYERS)+1));
-                } else if (below.getBlock() instanceof SnowBlock && below.get(SnowBlock.LAYERS) < 8) {
-                    world.setBlockState(belowpos, Blocks.SNOW.getDefaultState().with(SnowBlock.LAYERS, below.get(SnowBlock.LAYERS)+1));
+                if (state.getMaterial() == Material.SNOW) {
+                    if (state.get(SnowBlock.LAYERS) < 8) world.setBlockState(pos, Blocks.SNOW.getDefaultState().with(SnowBlock.LAYERS, state.get(SnowBlock.LAYERS) + 1));
                 } else {
                     world.setBlockState(pos, Blocks.SNOW.getDefaultState().with(SnowBlock.LAYERS, 1));
                 }
