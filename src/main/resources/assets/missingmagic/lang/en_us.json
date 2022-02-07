@@ -2,7 +2,10 @@
   "missingmagic.spellpiece.trick_test": "Trick: Test",
   "missingmagic.spellpiece.trick_test.desc": "Test Spell Piece",
   "missingmagic.spellpiece.trick_freeze": "Trick: Freeze Block",
-  "missingmagic.spellpiece.trick_freeze.desc": "Extremely Cold",
+  "missingmagic.spellpiece.trick_freeze.desc": "Freezes the Block at the given Position",
+
+  "missingmagic.spellpiece.trick_torrent_sequence": "Trick: Torrent Sequence",
+  "missingmagic.spellpiece.trick_torrent_sequence.desc": "Creates a sequence of water along the direction of the given Vector",
 
   "missingmagic.error.range": "ERROR: The range of this trick is 32 blocks",
   "missingmagic.error.test": "ERROR: Test Error"

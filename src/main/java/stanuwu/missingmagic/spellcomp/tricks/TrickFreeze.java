@@ -2,27 +2,18 @@ package stanuwu.missingmagic.spellcomp.tricks;
 
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.dispenser.IPosition;
-import net.minecraft.entity.item.FallingBlockEntity;
-import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
-import net.minecraft.world.gen.layer.AddSnowLayer;
-import stanuwu.missingmagic.MissingMagic;
-import stanuwu.missingmagic.Utils;
 import stanuwu.missingmagic.spellcomp.Errors;
 import vazkii.psi.api.internal.Vector3;
 import vazkii.psi.api.spell.*;
-import vazkii.psi.api.spell.param.ParamNumber;
 import vazkii.psi.api.spell.param.ParamVector;
 import vazkii.psi.api.spell.piece.PieceTrick;
 
-public class FreezeTrick extends PieceTrick {
+public class TrickFreeze extends PieceTrick {
     SpellParam<Vector3> position;
 
-    public FreezeTrick(Spell spell) {
+    public TrickFreeze(Spell spell) {
         super(spell);
     }
 

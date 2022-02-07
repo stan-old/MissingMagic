@@ -6,10 +6,10 @@ import vazkii.psi.api.spell.*;
 import vazkii.psi.api.spell.param.ParamNumber;
 import vazkii.psi.api.spell.piece.PieceTrick;
 
-public class TestTrick extends PieceTrick {
+public class TrickTest extends PieceTrick {
     SpellParam<Number> input1;
 
-    public TestTrick(Spell spell) {
+    public TrickTest(Spell spell) {
         super(spell);
     }
 
