@@ -15,10 +15,10 @@ import vazkii.psi.api.spell.*;
 import vazkii.psi.api.spell.param.ParamVector;
 import vazkii.psi.api.spell.piece.PieceTrick;
 
-public class TrickFreeze extends PieceTrick {
+public class TrickMelt extends PieceTrick {
     SpellParam<Vector3> position;
 
-    public TrickFreeze(Spell spell) {
+    public TrickMelt(Spell spell) {
         super(spell);
     }
 
@@ -41,48 +41,33 @@ public class TrickFreeze extends PieceTrick {
         if (!ctx.isInRadius(positionV)) Errors.runtime(SpellRuntimeException.OUTSIDE_RADIUS);
         else {
             BlockPos blockpos = positionV.toBlockPos();
-            doFreeze(blockpos, ctx);
+            doMelt(blockpos, ctx);
         }
         return null;
     }
 
-    public static void doFreeze(BlockPos pos, SpellContext ctx) {
+    public static void doMelt(BlockPos pos, SpellContext ctx) {
         World world = ctx.focalPoint.getEntityWorld();
         BlockState state= world.getBlockState(pos);
-        boolean frozen = false;
-        if((state.getMaterial() == Material.AIR || state.getMaterial() == Material.SNOW) && world.getBiome(pos).getTemperature() < 2) {
-            BlockState below = world.getBlockState(pos.add(0, -1, 0));
-            if(world.isRaining()) {
-                world.setBlockState(pos, Blocks.ICE.getDefaultState());
-                frozen = true;
-            } else if(below.isSolid()) {
-                if (state.getMaterial() == Material.SNOW) {
-                    if (state.get(SnowBlock.LAYERS) < 8) world.setBlockState(pos, Blocks.SNOW.getDefaultState().with(SnowBlock.LAYERS, state.get(SnowBlock.LAYERS) + 1));
-                } else {
-                    world.setBlockState(pos, Blocks.SNOW.getDefaultState().with(SnowBlock.LAYERS, 1));
-                }
-                frozen = true;
-            }
-        } else if (state.getMaterial() == Material.WATER) {
-            world.setBlockState(pos, Blocks.ICE.getDefaultState());
-            frozen = true;
-
-        } else if (state.getMaterial() == Material.LAVA) {
-            if (state.getFluidState().isSource()) {
-                world.setBlockState(pos, Blocks.OBSIDIAN.getDefaultState());
+        boolean molten = false;
+        Material mat = state.getMaterial();
+        if (mat == Material.ICE || mat == Material.PACKED_ICE ||mat == Material.SNOW_BLOCK) {
+            world.setBlockState(pos, Blocks.WATER.getDefaultState());
+            molten = true;
+        } else if (mat == Material.SNOW) {
+            int layers = world.getBlockState(pos).get(SnowBlock.LAYERS);
+            if (layers > 7) {
+                world.setBlockState(pos, Blocks.WATER.getDefaultState());
             } else {
-                world.setBlockState(pos, Blocks.STONE.getDefaultState());
+                BlockState block = Blocks.WATER.getDefaultState().with(FlowingFluidBlock.LEVEL, layers);
+                world.setBlockState(pos, block);
             }
-            frozen = true;
-        } else if (state.getMaterial() == Material.FIRE) {
-            world.setBlockState(pos, Blocks.AIR.getDefaultState());
-            frozen = true;
+            molten = true;
         }
-
-        if (frozen) {
+        if (molten) {
             world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
             for (int l = 0; l < 8; ++l) {
-                Utils.BroadcastParticles(world, new BroadcastableParticles(ParticleTypes.ITEM_SNOWBALL, pos.add(.5+ Math.random(), .5+ Math.random(), .5+ Math.random())));
+                Utils.BroadcastParticles(world, new BroadcastableParticles(ParticleTypes.LARGE_SMOKE, pos.add(.5+ Math.random(), .5+ Math.random(), .5+ Math.random())));
             }
         }
     }

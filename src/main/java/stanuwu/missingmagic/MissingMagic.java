@@ -15,6 +15,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import stanuwu.missingmagic.network.NetworkRegistryHandler;
 
 import java.util.stream.Collectors;
 
@@ -31,6 +32,7 @@ public class MissingMagic {
 
     private void setup(final FMLCommonSetupEvent event) {
         LOGGER.info("MassingMagic Loaded");
+        NetworkRegistryHandler.init();
     }
 
     @SubscribeEvent

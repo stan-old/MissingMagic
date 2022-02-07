@@ -64,7 +64,7 @@ public class TrickFreezeSequence extends PieceTrick {
             if (!ctx.isInRadius(Vector3.fromBlockPos(blockPos))) {
                 throw new SpellRuntimeException(SpellRuntimeException.OUTSIDE_RADIUS);
             }
-            TrickFreeze.doFreeze(blockPos, world);
+            TrickFreeze.doFreeze(blockPos, ctx);
         }
 
         return null;
