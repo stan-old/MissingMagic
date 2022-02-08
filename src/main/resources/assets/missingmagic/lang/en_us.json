@@ -12,6 +12,11 @@
   "missingmagic.spellpiece.trick_melt_sequence": "Trick: Melt Block Sequence",
   "missingmagic.spellpiece.trick_melt_sequence.desc": "Melts a sequence of blocks along the direction of the given Vector",
 
+  "missingmagic.spellpiece.operator_vector_component_sum": "Operator: Vector Component Sum",
+  "missingmagic.spellpiece.operator_vector_component_sum.desc": "Adds up all the components of the given Vector",
+  "missingmagic.spellpiece.operator_vector_component_product": "Operator: Vector Component Product",
+  "missingmagic.spellpiece.operator_vector_component_product.desc": "Multiplies together all the components of the given Vector",
+
   "missingmagic.error.range": "ERROR: The range of this trick is 32 blocks",
   "missingmagic.error.test": "ERROR: Test Error"
 }
