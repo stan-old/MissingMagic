@@ -22,6 +22,7 @@ public class RegisterPieces {
         register("trick_freeze_sequence", TrickFreezeSequence.class, false);
         register("trick_torrent_sequence", TrickTorrentSequence.class, false);
         register("trick_melt", TrickMelt.class, false);
+        register("trick_melt_sequence", TrickMeltSequence.class, false);
     }
     public static void register(String id, Class<? extends SpellPiece> piece, boolean main) {
         PsiAPI.registerSpellPieceAndTexture(new ResourceLocation(MissingMagic.modId, id), piece);
