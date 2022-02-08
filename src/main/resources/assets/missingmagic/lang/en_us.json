@@ -7,6 +7,10 @@
   "missingmagic.spellpiece.trick_freeze_sequence.desc": "Freezes a sequence of blocks along the direction of the given Vector",
   "missingmagic.spellpiece.trick_torrent_sequence": "Trick: Torrent Sequence",
   "missingmagic.spellpiece.trick_torrent_sequence.desc": "Creates a sequence of water along the direction of the given Vector",
+  "missingmagic.spellpiece.trick_melt": "Trick: Melt Block",
+  "missingmagic.spellpiece.trick_melt.desc": "Melts the Block at the given Position",
+  "missingmagic.spellpiece.trick_melt_sequence": "Trick: Melt Block Sequence",
+  "missingmagic.spellpiece.trick_melt_sequence.desc": "Melts a sequence of blocks along the direction of the given Vector",
 
   "missingmagic.error.range": "ERROR: The range of this trick is 32 blocks",
   "missingmagic.error.test": "ERROR: Test Error"

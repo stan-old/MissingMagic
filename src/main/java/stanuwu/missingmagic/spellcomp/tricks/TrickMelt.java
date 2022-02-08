@@ -15,6 +15,8 @@ import vazkii.psi.api.spell.*;
 import vazkii.psi.api.spell.param.ParamVector;
 import vazkii.psi.api.spell.piece.PieceTrick;
 
+import java.util.*;
+
 public class TrickMelt extends PieceTrick {
     SpellParam<Vector3> position;
 
@@ -47,6 +49,28 @@ public class TrickMelt extends PieceTrick {
     }
 
     public static void doMelt(BlockPos pos, SpellContext ctx) {
+        List<Block> stoneTypeBlocks = new ArrayList<Block>(Arrays.asList(
+                Blocks.STONE,
+                Blocks.COBBLESTONE,
+                Blocks.ANDESITE,
+                Blocks.DIORITE,
+                Blocks.GRANITE,
+                Blocks.BLACKSTONE,
+                Blocks.POLISHED_ANDESITE,
+                Blocks.POLISHED_DIORITE,
+                Blocks.POLISHED_GRANITE,
+                Blocks.POLISHED_BLACKSTONE,
+                Blocks.BASALT,
+                Blocks.POLISHED_BASALT,
+                Blocks.SMOOTH_STONE,
+                Blocks.STONE_BRICKS,
+                Blocks.CHISELED_STONE_BRICKS,
+                Blocks.CRACKED_STONE_BRICKS,
+                Blocks.POLISHED_BLACKSTONE_BRICKS,
+                Blocks.CHISELED_POLISHED_BLACKSTONE,
+                Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS
+        )) {};
+
         World world = ctx.focalPoint.getEntityWorld();
         BlockState state= world.getBlockState(pos);
         boolean molten = false;
@@ -62,6 +86,15 @@ public class TrickMelt extends PieceTrick {
                 BlockState block = Blocks.WATER.getDefaultState().with(FlowingFluidBlock.LEVEL, layers);
                 world.setBlockState(pos, block);
             }
+            molten = true;
+        } else if (stoneTypeBlocks.contains(state.getBlock())) {
+            world.setBlockState(pos, Blocks.LAVA.getDefaultState().with(FlowingFluidBlock.LEVEL, 8));
+            molten = true;
+        } else if (state.getBlock() == Blocks.OBSIDIAN) {
+            world.setBlockState(pos, Blocks.LAVA.getDefaultState());
+            molten = true;
+        } else if (mat == Material.WATER) {
+            world.setBlockState(pos, Blocks.AIR.getDefaultState());
             molten = true;
         }
         if (molten) {
