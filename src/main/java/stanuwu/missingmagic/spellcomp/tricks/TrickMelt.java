@@ -100,7 +100,7 @@ public class TrickMelt extends PieceTrick {
         if (molten) {
             world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
             for (int l = 0; l < 8; ++l) {
-                Utils.BroadcastParticles(world, new BroadcastableParticles(ParticleTypes.LARGE_SMOKE, pos.add(.5+ Math.random(), .5+ Math.random(), .5+ Math.random())));
+                Utils.BroadcastParticles(world, new BroadcastableParticles(ParticleTypes.LARGE_SMOKE, pos.add(.5+ Math.random(), .5+ Math.random(), .5+ Math.random()), world.getDimensionKey().getLocation()));
             }
         }
     }

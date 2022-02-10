@@ -1,5 +1,6 @@
 package stanuwu.missingmagic;
 
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -14,6 +15,7 @@ import stanuwu.missingmagic.network.NetworkRegistryHandler;
 public class MissingMagic {
     public static final String modId = "missingmagic";
     public static final Logger LOGGER = LogManager.getLogger();
+    public static MinecraftServer server;
 
     public MissingMagic() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -22,12 +24,13 @@ public class MissingMagic {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        LOGGER.info("MassingMagic Loaded");
         NetworkRegistryHandler.init();
+        LOGGER.info("MassingMagic Loaded");
     }
 
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
+        this.server = event.getServer();
         LOGGER.info("MissingMagic Loaded");
     }
 }
